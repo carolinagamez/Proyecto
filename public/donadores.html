@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registro de Donador</title>
+  <link rel="stylesheet" href="/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="d-flex justify-content-center align-items-center vh-100 bg-light">
+  <div class="text-center w-100" style="max-width: 400px;">
+    <h2 class="text-rojo mb-4">Registro de Donador</h2>
+    <form action="/registrar-donador" method="POST">
+      <label for="nombre">Nombre completo:</label>
+      <input type="text" id="nombre" name="nombre" class="form-control mb-2" required>
+
+      <label for="edad">Edad:</label>
+      <input type="number" id="edad" name="edad" class="form-control mb-2" required min="1" max="120">
+
+      <label for="peso">Peso (kg):</label>
+      <input type="number" step="0.01" id="peso" name="peso" class="form-control mb-2" required min="1" max="300">
+
+      <label for="tipo">Tipo de sangre:</label>
+      <select id="tipo" name="tipo" class="form-select mb-2" required>
+        <option value="">Selecciona</option>
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="AB">AB</option>
+        <option value="O">O</option>
+      </select>
+
+      <label for="rh">Factor Rh:</label>
+      <select id="rh" name="rh" class="form-select mb-3" required>
+        <option value="">Selecciona</option>
+        <option value="+">+</option>
+        <option value="-">-</option>
+      </select>
+
+      <button type="submit" class="btn btn-info w-100">Registrar Donador</button>
+    </form>
+    <p class="mt-4">¿Volver al inicio?</p>
+    <button onclick="window.location.href='/'" class="btn btn-outline-dark">Inicio</button>
+  </div>
+</body>
+</html>

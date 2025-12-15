@@ -1,0 +1,119 @@
+body {
+  font-family: 'News Cycle', sans-serif;
+  background-color: #f5f5f5; /* gris claro para contraste */
+}
+
+h1, h2, h3 {
+  color: #6b0f1a; /* rojo vino sobrio */
+  text-align: center;
+}
+
+.bg-rojo {
+  background-color: #4a0c12; /* o el tono que prefieras */
+}
+
+p {
+  color: #4a0c12; 
+  text-align: center;
+}
+
+form {
+  width: 320px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #4a0c12; 
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
+  color: #fff; 
+}
+
+label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 12px;
+  border: 1px solid #6b0f1a;
+  border-radius: 4px;
+}
+
+table {
+  width: 85%;
+  margin: 20px auto;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+}
+
+th {
+  background-color: #6b0f1a;
+  color: #fff;
+}
+
+tr:hover {
+  background-color: #d9c6c6; /* gris claro al pasar el cursor */
+}
+
+button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 15px;
+  background-color: #6b0f1a;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #78131d;
+}
+
+a {
+  color: #6b0f1a;
+  text-align: center;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Barra de navegación */
+nav {
+  background-color: #4a0c12;
+  color: white;
+  padding: 12px;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+nav ul li {
+  margin-right: 20px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 6px 12px;
+  font-weight: bold;
+}
+
+nav ul li a:hover {
+  background-color: #6b0f1a;
+  border-radius: 4px;
+}

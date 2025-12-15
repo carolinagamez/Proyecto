@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Reportes</title>
+  <link rel="stylesheet" href="/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="bg-light">
+  <div class="container mt-5">
+    <h2 class="text-rojo text-center mb-4">Reportes de Donadores y Receptores</h2>
+    <div class="row justify-content-center">
+      <div class="col-md-6 text-center">
+        <div class="card border-success shadow-sm mb-4">
+          <div class="card-body">
+            <h5 class="card-title">Descargar Donadores</h5>
+            <p class="card-text">Obtén un archivo Excel con todos los donadores registrados.</p>
+            <a href="/download-donadores" class="btn btn-success">Descargar Excel</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 text-center">
+        <div class="card border-info shadow-sm mb-4">
+          <div class="card-body">
+            <h5 class="card-title">Descargar Receptores</h5>
+            <p class="card-text">Obtén un archivo Excel con todos los receptores registrados.</p>
+            <a href="/download-receptores" class="btn btn-info">Descargar Excel</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-4">
+      <button onclick="window.location.href='/'" class="btn btn-outline-dark">Volver al inicio</button>
+    </div>
+  </div>
+</body>
+</html>

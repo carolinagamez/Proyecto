@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registros Guardados</title>
+  <link rel="stylesheet" href="/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="bg-light">
+  <div class="container mt-5">
+    <h2 class="text-rojo text-center mb-4">Registros Guardados</h2>
+    <div class="row">
+      <!-- Tabla Donadores -->
+      <div class="col-md-6">
+        <h4 class="text-info text-center mb-3">Donadores</h4>
+        <table class="table table-bordered table-hover shadow-sm table-secondary">
+          <thead class="table-secondary">
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Edad</th>
+              <th>Peso</th>
+              <th>Tipo</th>
+              <th>Rh</th>
+            </tr>
+          </thead>
+          <tbody id="tabla-donadores">
+            <!-- Se llena desde el servidor -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Tabla Receptores -->
+      <div class="col-md-6">
+        <h4 class="text-primary text-center mb-3">Receptores</h4>
+        <table class="table table-bordered table-hover shadow-sm table-dark">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Edad</th>
+              <th>Peso</th>
+              <th>Tipo</th>
+              <th>Rh</th>
+            </tr>
+          </thead>
+          <tbody id="tabla-receptores">
+            <!-- Se llena desde el servidor -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="text-center mt-4">
+      <button onclick="window.location.href='/'" class="btn btn-outline-dark">Volver al inicio</button>
+    </div>
+  </div>
+
+  <script>
+    // Cargar datos desde el servidor
+    fetch('/api/registros')
+      .then(res => res.json())
+      .then(data => {
+        const donadores = data.donadores;
+        const receptores = data.receptores;
+
+        const tablaDonadores = document.getElementById('tabla-donadores');
+        const tablaReceptores = document.getElementById('tabla-receptores');
+
+        donadores.forEach(d => {
+          tablaDonadores.innerHTML += `
+            <tr>
+              <td>${d.id}</td>
+              <td>${d.nombre}</td>
+              <td>${d.edad}</td>
+              <td>${d.peso}</td>
+              <td>${d.tipo}</td>
+              <td>${d.rh}</td>
+            </tr>
+          `;
+        });
+
+        receptores.forEach(r => {
+          tablaReceptores.innerHTML += `
+            <tr>
+              <td>${r.id}</td>
+              <td>${r.nombre}</td>
+              <td>${r.edad}</td>
+              <td>${r.peso}</td>
+              <td>${r.tipo}</td>
+              <td>${r.rh}</td>
+            </tr>
+          `;
+        });
+      });
+  </script>
+</body>
+</html>
