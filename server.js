@@ -55,7 +55,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Servidor en funcionamiento en el puerto ${PORT}`));
 
-// LOGIN
+// Login
 app.post('/login', (req, res) => {
   const { nombre, password } = req.body;
 
@@ -182,7 +182,7 @@ app.post('/registrar', async (req, res) => {
     const rol = results[0].rol;
     const passwordHash = await bcrypt.hash(password, 10);
 
-    // REGISTRAR USUARIOS 
+    // Registrar usuarios
     connection.query(
       'INSERT INTO usuarios (nombre, correo, password_hash, rol) VALUES (?, ?, ?, ?)',
       [nombre, correo, passwordHash, rol],
@@ -236,7 +236,7 @@ app.get('/registrar', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'registro.html'));
 });
 
-//CERRAR SESION
+//Cerrar sesion
 app.get('/logout', (req, res) => {
   req.session.destroy(err => {
     if (err) {
@@ -247,7 +247,7 @@ app.get('/logout', (req, res) => {
   });
 });
 
-// Mostrar tabla de usuarios (solo Admin)
+// Mostrar tabla de usuarios
 app.get('/ver-usuarios', (req, res) => {
   if (req.session.rol !== 'Admin') return res.redirect('/');
 
@@ -340,7 +340,7 @@ app.get('/ver-usuarios', (req, res) => {
 });
 
 
-// ACTUALIZAR ROL
+// Actualizar rol
 app.post('/actualizar-rol', (req, res) => {
   
   if (req.session.rol !== 'Admin') {
@@ -387,7 +387,7 @@ app.post('/actualizar-rol', (req, res) => {
       `);
     }
 
-    // 🔑 Si el usuario cambió su propio rol, actualizar la sesión
+    // Autocambio de rol
     if (req.session.userId == id) {
       req.session.rol = rol;
     }
@@ -553,7 +553,7 @@ app.post('/registrar-receptor', requireRole('Admin', 'Medico'), (req, res) => {
   });
 });
 
-//VER TABLAS CON LOS REGISTROS
+//Ver tablas de registros
 app.get('/ver-registros', requireRole('Admin', 'Medico', 'Inspector'), (req, res) => {
   res.sendFile(__dirname + '/public/ver-registros.html');
 });
@@ -611,7 +611,7 @@ app.get('/api/registros', requireRole('Admin', 'Medico', 'Inspector'), (req, res
   });
 });
 
-//REPORTES
+//Reportes
 app.get('/descargar-reportes', requireLogin, requireRole('Admin','Medico', 'Inspector'), (req, res) => {
   res.sendFile(__dirname + '/public/reportes.html');
 });
@@ -678,12 +678,12 @@ app.get('/download-receptores', requireLogin, requireRole('Admin', 'Medico', 'In
   });
 });
 
-//COMPATIBILIDAD
+//Compatibilidad
 app.get('/buscar-match', requireLogin, requireRole('Admin','Medico','Inspector'), (req, res) => {
   const raw = req.query.query?.trim();
   if (!raw) return res.json([]);
 
-  // Limpia símbolos raros y separa por espacios
+
   const clean = raw.replace(/[^\w\s]/gi, '').trim();
   const parts = clean.split(/\s+/);
 
@@ -691,7 +691,7 @@ app.get('/buscar-match', requireLogin, requireRole('Admin','Medico','Inspector')
   const params = [];
 
   if (parts.length === 1) {
-    // Si es número → ID, si no → nombre
+    
     if (!isNaN(parts[0])) {
       sql += ' id = ?';
       params.push(parts[0]);
@@ -700,7 +700,7 @@ app.get('/buscar-match', requireLogin, requireRole('Admin','Medico','Inspector')
       params.push(`%${parts[0]}%`);
     }
   } else {
-    // Mezcla ID y nombre si ambos están presentes
+    
     const idPart = parts.find(p => !isNaN(p));
     const namePart = parts.filter(p => isNaN(p)).join(' ');
     if (idPart && namePart) {
@@ -730,7 +730,7 @@ app.get('/buscar-match', requireLogin, requireRole('Admin','Medico','Inspector')
   });
 });
 
-// Ver donadores (HTML generado con selects y Bootstrap)
+// Ver donadores
 app.get('/ver-donadores', requireLogin, requireRole('Admin','Medico'), (req, res) => {
   connection.query('SELECT * FROM donadores', (err, results) => {
     if (err) {
@@ -1099,4 +1099,5 @@ app.post('/eliminar-receptor', requireLogin, requireRole('Admin','Medico'), (req
 // Iniciar el servidor
 app.listen(3000, () => {
   console.log('Servidor corriendo en http://localhost:3000');
+
 });
